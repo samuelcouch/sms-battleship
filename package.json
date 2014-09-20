@@ -13,9 +13,12 @@
     "ejs": "~0.8.5",
     "express": "~4.2.0",
     "lodash": "^2.4.1",
+    "mongoose": "^3.8.16",
     "morgan": "~1.0.0",
     "passport-instagram": "^0.1.2",
+    "pg": "^3.4.4",
     "request": "^2.42.0",
+    "sequelize": "^2.0.0-rc1",
     "static-favicon": "~1.0.0"
   }
 }

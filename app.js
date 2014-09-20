@@ -1,9 +1,13 @@
+var dotenv = require('dotenv');
+dotenv.load();
+
 var express = require('express');
 var path = require('path');
 var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var db = require('./models');
 
 var C_main = require('./controllers/main');
 
@@ -55,8 +59,17 @@ app.use(function(err, req, res, next) {
     });
 });
 
-app.listen(app.get('port'), function(){
-    console.log('Express server listening on port %d in %s mode', app.get('port'), app.get('env'));
-    });
+db
+  .sequelize
+  .sync()
+  .complete(function(err) {
+    if (err) {
+      throw err
+    } else {
+      app.listen(app.get('port'), function(){
+        console.log('Express server listening on port %d in %s mode', app.get('port'), app.get('env'));
+      });
+    }
+  });
 
 module.exports = app;
