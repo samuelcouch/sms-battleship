@@ -1,1 +1,0 @@
-Made with ♥ by Sam Couch at Hack the North, Fall 2014.
