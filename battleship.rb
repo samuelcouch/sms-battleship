@@ -2,6 +2,35 @@
 require 'sinatra'
 require 'sendgrid-ruby'
 
+grid = [['a1', 'b1', 'c1', 'd1', 'e1'],
+           ['a2', 'b2', 'c2', 'd2', 'e2'], 
+           ['a3', 'b3', 'c3', 'd3', 'e3'], 
+           ['a4', 'b4', 'c4', 'd4', 'e4'], 
+           ['a5', 'b5', 'c5', 'd5', 'e5']]
+
+class Player
+  attr_accessor :name, :ship
+
+  def initialize(name)
+    @name = name
+    @ship = Ship.new()
+  end
+end
+
+class Ship
+  attr_accessor :row, :col, :location, :sunk 
+
+  def initialize()
+    @row =  (0..4).to_a.sample
+    @col =  (0..4).to_a.sample
+    @location = grid[@col][@row]
+  end
+
+  def is_sunk?
+    @sunk.is_sunk?
+  end
+end
+
 get '/' do
   'Hello world!'
   client = SendGrid::Client.new do |c|
@@ -18,4 +47,8 @@ get '/' do
 
 puts client.send(mail)
 
+end
+
+post '/' do
+  puts request.body.read
 end
