@@ -1,11 +1,12 @@
 # myapp.rb
 require 'sinatra'
-require 'sendgrid-ruby'
+# require 'sendgrid-ruby'
+require 'twilio-ruby'
 
 grid = [['a1', 'b1', 'c1', 'd1', 'e1'],
-           ['a2', 'b2', 'c2', 'd2', 'e2'], 
-           ['a3', 'b3', 'c3', 'd3', 'e3'], 
-           ['a4', 'b4', 'c4', 'd4', 'e4'], 
+           ['a2', 'b2', 'c2', 'd2', 'e2'],
+           ['a3', 'b3', 'c3', 'd3', 'e3'],
+           ['a4', 'b4', 'c4', 'd4', 'e4'],
            ['a5', 'b5', 'c5', 'd5', 'e5']]
 
 class Player
@@ -18,7 +19,7 @@ class Player
 end
 
 class Ship
-  attr_accessor :row, :col, :location, :sunk 
+  attr_accessor :row, :col, :location, :sunk
 
   def initialize()
     @row =  (0..4).to_a.sample
@@ -50,5 +51,15 @@ puts client.send(mail)
 end
 
 post '/' do
-  puts request.body.read
+  string = request.body.read
+  case Challenge
+    when 1..5
+      puts "It's between 1 and 5"
+    when 6
+      puts "It's 6"
+    when String
+      puts "You passed a string"
+    else
+      puts "You gave me #{a} -- I have no idea what to do with that."
+    end
 end
