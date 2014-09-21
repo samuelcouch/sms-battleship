@@ -33,27 +33,25 @@ class Ship
   end
 end
 
-# get '/' do
-#   'Hello world!'
-#   client = SendGrid::Client.new do |c|
-#     c.api_user = 'guozhaonan'
-#     c.api_key = 'albertguo213-41'
-#   end
+get '/' do
+  'Hello world!'
+  client = SendGrid::Client.new do |c|
+    c.api_user = 'guozhaonan'
+    c.api_key = 'albertguo213-41'
+  end
 
-#   mail = SendGrid::Mail.new do |m|
-#     m.to = 'guozhaonan@gmail.com'
-#     m.from = 'albert@innoblue.org'
-#     m.subject = 'Hello world!'
-#     m.text = 'I heard you like pineapple.'
-#   end
+  mail = SendGrid::Mail.new do |m|
+    m.to = 'guozhaonan@gmail.com'
+    m.from = 'albert@innoblue.org'
+    m.subject = 'Hello world!'
+    m.text = 'I heard you like pineapple.'
+  end
 
-# puts client.send(mail)
+puts client.send(mail)
 
-# end
+end
 
-# post '/' do
-#   message_response = request.body.read
-#   puts message_response
-#   mail = Mail.read(message_response)
-#   puts mail.subject
-# end
+post '/' do
+  puts params[:subject]
+  200
+end
