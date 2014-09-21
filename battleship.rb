@@ -1,4 +1,3 @@
-# myapp.rb
 require 'sinatra'
 require 'sendgrid-ruby'
 require 'json'
@@ -52,39 +51,6 @@ puts client.send(mail)
 end
 
 post '/' do
-  string = request.body.read
-  case Challenge
-    when 1..5
-      puts "It's between 1 and 5"
-    when 6
-      puts "It's 6"
-    when String
-      puts "You passed a string"
-    else
-      puts "You gave me #{a} -- I have no idea what to do with that."
-    end
+  puts params[:subject]
+  200
 end
-# get '/' do
-#   'Hello world!'
-#   client = SendGrid::Client.new do |c|
-#     c.api_user = 'guozhaonan'
-#     c.api_key = 'albertguo213-41'
-#   end
-
-#   mail = SendGrid::Mail.new do |m|
-#     m.to = 'guozhaonan@gmail.com'
-#     m.from = 'albert@innoblue.org'
-#     m.subject = 'Hello world!'
-#     m.text = 'I heard you like pineapple.'
-#   end
-
-# puts client.send(mail)
-
-# end
-
-# post '/' do
-#   message_response = request.body.read
-#   puts message_response
-#   mail = Mail.read(message_response)
-#   puts mail.subject
-# end
