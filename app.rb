@@ -15,6 +15,15 @@ def get_a_location
   grid[col][row]
 end      
 
+def get_unique_locations
+  a = get_a_location
+  b = get_a_location
+  until a!=b
+    b = get_a_location
+  end
+  return [a, b]
+end
+
 post '/' do
   subject = params[:subject].downcase
   if subject.include?"challenge"
@@ -22,7 +31,8 @@ post '/' do
     subs = subject.split
     subs.each_with_index{ |element,index|
       if element.eql?"challenge"
-        Game.create(:player_one => @from[0], :player_two => subs[index+1], :player_one_ship_location => get_a_location, :player_two_ship_location => get_a_location)
+        locs = get_unique_locations
+        Game.create(:player_one => @from[0], :player_two => subs[index+1], :player_one_ship_location => locs[0], :player_two_ship_location => locs[1])
       end
     } 
   end
