@@ -5,10 +5,10 @@ class CreateGames < ActiveRecord::Migration
      t.string :player_two
      t.string :player_one_ship_location
      t.string :player_two_ship_location
-     t.boolean :player_one_sunk
-     t.boolean :player_two_sunk
-     t.integer :turns_played
-     t.boolean :challenge_accepted
+     t.boolean :player_one_sunk, default: false
+     t.boolean :player_two_sunk, default: false
+     t.integer :turns_played, default: 0
+     t.boolean :challenge_accepted, default: false
      t.timestamps
    end
  end
